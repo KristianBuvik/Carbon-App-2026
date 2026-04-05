@@ -7,10 +7,10 @@ import os
 application = Flask(__name__)
 
 ### Code GitHub
-application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
-DBVAR = f"postgresql://{os.environ['RDS_USERNAME']}:{os.environ['RDS_PASSWORD']}@{os.environ['RDS_HOSTNAME']}/{os.environ['RDS_DB_NAME']}"
-DBVAR = 'postgresql://username:password@endpoint:5432//ebdb'
-application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR 
+application.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '3oueqkfdfas8ruewqndr8ewrewrouewrere44554')
+#DBVAR = f"postgresql://{os.environ['RDS_USERNAME']}:{os.environ['RDS_PASSWORD']}@{os.environ['RDS_HOSTNAME']}/{os.environ['RDS_DB_NAME']}"
+DBVAR = 'postgresql://postgres:dl8h9NJxrLYniMRc@awseb-e-uw2e3at82t-stack-awsebrdsdatabase-jrd4erb1qke4.c76imoea2bcw.eu-north-1.rds.amazonaws.com:5432/ebdb'
+application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
 application.config['SQLALCHEMY_BINDS'] ={'transport': DBVAR}
 
 ### Code computer
@@ -34,3 +34,4 @@ application.register_blueprint(home)
 application.register_blueprint(methodology)
 application.register_blueprint(carbon_app)
 application.register_blueprint(users)
+
